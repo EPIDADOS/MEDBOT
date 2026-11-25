@@ -29,8 +29,10 @@ const modelo = path.join(VIDEOS, '_modelo');
 copia(path.join(modelo, 'tools'), path.join(destino, 'tools'));
 copia(path.join(modelo, 'assets'), path.join(destino, 'assets'));
 copia(path.join(modelo, 'roteiro'), path.join(destino, 'roteiro'));
+// o Git não guarda pasta vazia: estas três são criadas aqui
 fs.mkdirSync(path.join(destino, 'src'), { recursive: true });
 fs.mkdirSync(path.join(destino, 'out'), { recursive: true });
+fs.mkdirSync(path.join(destino, 'assets', 'fotos'), { recursive: true });
 for (const arq of ['index.html', 'cena.js', 'capa.html']) {
   const de = path.join(origem, 'src', arq);
   if (fs.existsSync(de)) fs.copyFileSync(de, path.join(destino, 'src', arq));
