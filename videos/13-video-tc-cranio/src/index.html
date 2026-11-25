@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Como ler uma TC de crânio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700..800&family=Onest:wght@500..800&display=block" rel="stylesheet">
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+               "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/" } }
+</script>
+<style>
+  /* Vídeo vertical 1080 × 1920 a 30 fps. Camadas: fundo (canvas), cenas (HTML e SVG), laser, Medbot 3D (three.js),
+     barra de passos, legenda e flash. Tudo é calculado a partir do tempo em window.seek(t). */
+  :root { --tinta: #0C1A21; --lima: #C1FF72; --monitor: #07131A; --alerta: #FF4D57; --suave: #8FA6AD;
+          --titulo: 'Bricolage Grotesque', sans-serif; --texto: 'Onest', sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--tinta); }
+  #tela { position: absolute; inset: 0; overflow: hidden; color: #fff; font-family: var(--texto); }
+  #mundo { position: absolute; inset: 0; will-change: transform; }
+  canvas { position: absolute; left: 0; top: 0; }
+  .cena { position: absolute; inset: 0; visibility: hidden; will-change: transform, filter; }
+
+  /* Gancho */
+  .manchete { position: absolute; left: 50px; right: 50px; text-align: center; font: 800 128px/0.95 var(--titulo); letter-spacing: -.05em; }
+  .manchete span { display: inline-block; margin: 0 14px; }
+  .manchete span.lima { color: var(--lima); }
+  #g-30 { position: absolute; left: 540px; top: 400px; display: flex; align-items: center; gap: 22px; transform-origin: center;
+          font: 800 170px/1 var(--titulo); letter-spacing: -.05em; color: var(--lima); white-space: nowrap; }
+  #g-30 svg { width: 150px; height: 150px; }
+
+  /* Monitor */
+  .monitor { position: absolute; left: 60px; top: 300px; width: 960px; height: 720px; border-radius: 44px; overflow: hidden;
+             background: radial-gradient(120% 90% at 50% 30%, #0B1E26, var(--monitor)); box-shadow: 0 40px 90px rgba(0,0,0,.55), 0 0 0 3px rgba(193,255,114,.22), inset 0 0 80px rgba(0,0,0,.6); }
+  .monitor svg { position: absolute; left: 0; top: 0; }
+  .neon { filter: drop-shadow(0 0 6px rgba(193,255,114,.95)) drop-shadow(0 0 18px rgba(193,255,114,.55)); }
+  .neon-v { filter: drop-shadow(0 0 6px rgba(255,77,87,.95)) drop-shadow(0 0 18px rgba(255,77,87,.55)); }
+  .camada { position: absolute; inset: 0; pointer-events: none; }
+  .tag { position: absolute; transform: translate(-50%, -100%); background: var(--lima); color: var(--tinta); white-space: nowrap;
+         font: 800 44px/1 var(--titulo); letter-spacing: -.02em; padding: 14px 22px; border-radius: 18px; box-shadow: 0 10px 30px rgba(0,0,0,.4); }
+  .tag small { display: block; font: 700 24px/1.2 var(--texto); letter-spacing: 0; margin-top: 4px; opacity: .8; }
+  .tag.escura { background: var(--tinta); color: var(--lima); border: 3px solid var(--lima); }
+  .tag.alerta { background: var(--alerta); color: #fff; }
+  .tag.baixo { transform: translate(-50%, 0); }
+  .bola { position: absolute; transform: translate(-50%, -50%); width: 78px; height: 78px; border-radius: 50%; background: var(--lima); color: var(--tinta);
+          display: flex; align-items: center; justify-content: center; font: 800 46px var(--titulo); box-shadow: 0 0 0 6px rgba(193,255,114,.25), 0 10px 26px rgba(0,0,0,.45); }
+  .selo { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 22px; white-space: nowrap;
+          background: var(--lima); color: var(--tinta); font: 800 96px/1 var(--titulo); letter-spacing: -.04em; padding: 30px 46px; border-radius: 34px;
+          box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 0 0 10px rgba(193,255,114,.22); }
+  .selo svg { width: 92px; height: 92px; }
+  .selo.alerta { background: var(--alerta); color: #fff; box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 0 0 12px rgba(255,77,87,.3); }
+  .deriv-nome { position: absolute; left: 26px; top: 22px; background: var(--lima); color: var(--tinta); font: 800 46px/1 var(--titulo); padding: 10px 18px; border-radius: 16px; }
+  .ok { position: absolute; right: 30px; top: 50%; width: 104px; height: 104px; margin-top: -52px; border-radius: 50%; background: var(--lima); color: var(--tinta);
+        display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 8px rgba(193,255,114,.25); }
+  .ok svg { width: 62px; height: 62px; }
+  .conta { position: absolute; left: 540px; top: 0; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 26px; white-space: nowrap;
+           background: var(--tinta); border: 4px solid var(--lima); border-radius: 36px; padding: 26px 40px; font: 800 116px/1 var(--titulo); letter-spacing: -.04em;
+           box-shadow: 0 30px 80px rgba(0,0,0,.55); }
+  .conta b { color: var(--lima); font-weight: 800; }
+  .conta svg { width: 100px; height: 100px; color: var(--alerta); }
+
+  /* Cartão de passo (voa para a barra de cima) */
+  #passo { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 30px; white-space: nowrap; visibility: hidden; transform-origin: center;
+           font: 800 140px/1 var(--titulo); letter-spacing: -.05em; }
+  #passo i { font-style: normal; width: 190px; height: 190px; border-radius: 50%; background: var(--lima); color: var(--tinta); display: flex; align-items: center; justify-content: center; font-size: 130px; }
+
+  /* Barra de passos */
+  #hud { position: absolute; left: 60px; right: 60px; top: 168px; display: flex; gap: 12px; }
+  #hud div { flex: 1; }
+  #hud span { display: block; font: 800 25px/1 var(--titulo); letter-spacing: -.01em; color: rgba(255,255,255,.45); margin-bottom: 10px; text-align: center; }
+  #hud b { display: block; height: 14px; border-radius: 999px; background: rgba(255,255,255,.14); overflow: hidden; }
+  #hud b i { display: block; height: 100%; width: 0; background: var(--lima); border-radius: 999px; box-shadow: 0 0 14px rgba(193,255,114,.8); }
+  #hud div.ativo span, #hud div.feito span { color: #fff; }
+  #hud div.ativo span { color: var(--lima); }
+
+  /* Legenda */
+  #legenda { position: absolute; left: 40px; right: 40px; height: 230px; display: flex; flex-wrap: wrap; align-content: center; justify-content: center;
+             column-gap: 22px; row-gap: 0; text-align: center; font: 800 92px/1.04 var(--titulo); letter-spacing: -.035em; pointer-events: none; }
+  #legenda span { display: inline-block; color: #fff; transform-origin: 50% 70%;
+                  text-shadow: 0 6px 0 rgba(0,0,0,.55), 5px 0 0 var(--tinta), -5px 0 0 var(--tinta), 0 5px 0 var(--tinta), 0 -5px 0 var(--tinta),
+                               4px 4px 0 var(--tinta), -4px 4px 0 var(--tinta), 4px -4px 0 var(--tinta), -4px -4px 0 var(--tinta); }
+  #legenda span.agora { color: var(--lima); }
+
+  /* Fim */
+  .botao { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 22px; white-space: nowrap;
+           background: #fff; color: var(--tinta); font: 800 66px/1 var(--titulo); letter-spacing: -.03em; padding: 24px 36px 24px 26px; border-radius: 999px;
+           box-shadow: 0 24px 60px rgba(0,0,0,.45); }
+  .botao span { width: 96px; height: 96px; border-radius: 50%; background: var(--tinta); color: var(--lima); display: flex; align-items: center; justify-content: center; }
+  .botao span svg { width: 54px; height: 54px; }
+  .botao.lima { background: var(--lima); }
+  #marca { position: absolute; left: 540px; top: 1690px; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 16px; font: 800 50px var(--titulo); white-space: nowrap; }
+  #marca img { width: 66px; height: 66px; }
+  #flash { position: absolute; inset: 0; pointer-events: none; }
+  /* Esfigmomanômetro */
+  .foto { position: absolute; left: 60px; top: 300px; width: 960px; height: 720px; border-radius: 44px; overflow: hidden; background: #fff;
+          box-shadow: 0 40px 90px rgba(0,0,0,.55), 0 0 0 3px rgba(193,255,114,.22); }
+  .foto img { display: block; width: 100%; height: 100%; }
+  .credito { position: absolute; right: 22px; bottom: 14px; font: 600 18px var(--texto); color: rgba(12,26,33,.6); background: rgba(255,255,255,.75); padding: 4px 10px; border-radius: 8px; }
+  .credito.claro { color: rgba(255,255,255,.85); background: rgba(0,0,0,.4); }
+  .chip { position: absolute; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 12px; white-space: nowrap; background: var(--tinta);
+          color: var(--lima); border: 3px solid var(--lima); font: 800 40px/1 var(--titulo); padding: 14px 22px; border-radius: 999px; box-shadow: 0 14px 34px rgba(0,0,0,.45); }
+  .chip svg { width: 40px; height: 40px; }
+  .chip.alerta { border-color: var(--alerta); color: #fff; background: var(--alerta); }
+  .tum { position: absolute; transform: translate(-50%, -50%); font: 800 64px/1 var(--titulo); color: #fff; letter-spacing: -.03em;
+         text-shadow: 0 0 24px rgba(193,255,114,.9), 0 6px 0 rgba(0,0,0,.5); white-space: nowrap; }
+
+  /* Visor de tomografia (estilo PACS) */
+  .visor { position: absolute; border-radius: 40px; overflow: hidden; background: #000;
+           box-shadow: 0 40px 90px rgba(0,0,0,.6), 0 0 0 3px rgba(193,255,114,.25), inset 0 0 0 1px rgba(255,255,255,.06); }
+  .visor img { position: absolute; display: none; max-width: none; }
+  .pacs { position: absolute; font: 700 22px/1.25 var(--texto); color: #9FB4BA; letter-spacing: .02em; white-space: nowrap; text-transform: uppercase; }
+  .pacs b { color: var(--lima); font-weight: 800; }
+  .pacs.tl { left: 26px; top: 20px; } .pacs.tr { right: 26px; top: 20px; text-align: right; } .pacs.bl { left: 26px; bottom: 18px; }
+  .ori { position: absolute; top: 50%; transform: translateY(-50%); font: 800 30px var(--titulo); color: rgba(255,255,255,.55); }
+  .ori.esq { left: 20px; } .ori.dir { right: 20px; }
+  .varre { position: absolute; left: 0; right: 0; height: 4px; background: var(--lima); box-shadow: 0 0 22px 6px rgba(193,255,114,.6); visibility: hidden; }
+  .alarme { position: absolute; inset: 0; border-radius: 40px; box-shadow: inset 0 0 0 8px var(--alerta), inset 0 0 90px rgba(255,77,87,.55); opacity: 0; }
+  .visor .credito { right: 22px; bottom: 16px; }
+  /* Escala de densidade */
+  .barra { position: absolute; border-radius: 22px; background: linear-gradient(90deg, #000 0%, #2a2a2a 12%, #777 45%, #d8d8d8 82%, #fff 100%);
+           box-shadow: 0 0 0 3px rgba(255,255,255,.18), 0 20px 50px rgba(0,0,0,.5); }
+  .marca-barra { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 8px; white-space: nowrap; }
+  .marca-barra i { width: 34px; height: 34px; border-radius: 50%; border: 5px solid var(--lima); background: var(--tinta); box-shadow: 0 0 16px rgba(193,255,114,.8); }
+  .marca-barra span { font: 800 28px var(--titulo); color: #fff; text-shadow: 0 3px 0 rgba(0,0,0,.6); }
+  /* Linhas do mnemônico e do resumo */
+  .linha { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 28px; white-space: nowrap; transform-origin: left center; }
+  .linha .letra { width: 116px; height: 116px; border-radius: 50%; background: var(--lima); color: var(--tinta); display: flex; align-items: center; justify-content: center;
+                  font: 800 84px/1 var(--titulo); box-shadow: 0 0 0 7px rgba(193,255,114,.22), 0 14px 30px rgba(0,0,0,.45); flex: none; }
+  .linha .letra.vazia { background: transparent; border: 5px dashed rgba(193,255,114,.55); box-shadow: none; color: transparent; }
+  .linha .en { font: 800 92px/0.95 var(--titulo); letter-spacing: -.04em; color: #fff; }
+  .linha .pt { font: 700 34px/1.1 var(--texto); color: var(--lima); margin-top: 6px; }
+  .linha .mini { width: 150px; height: 150px; border-radius: 30px; overflow: hidden; background: #000; position: relative; flex: none;
+                 box-shadow: 0 0 0 3px rgba(193,255,114,.35), 0 14px 30px rgba(0,0,0,.5); }
+  .linha .mini img { position: absolute; max-width: none; }
+  .ok-mini { position: absolute; width: 58px; height: 58px; border-radius: 50%; background: var(--lima); color: var(--tinta); display: flex; align-items: center; justify-content: center;
+             box-shadow: 0 0 0 5px rgba(12,26,33,.9); }
+  .ok-mini svg { width: 36px; height: 36px; }
+  #passo small { display: block; font: 700 46px/1 var(--texto); color: var(--lima); letter-spacing: 0; margin-bottom: 8px; }
+  #hud span em { font-style: normal; color: var(--lima); }
+  #scrim { position: absolute; inset: 0; background: radial-gradient(60% 40% at 50% 36%, rgba(8,18,23,.85), rgba(8,18,23,.55)); pointer-events: none; }
+
+</style>
+</head>
+<body>
+<div id="tela">
+  <div id="mundo">
+    <canvas id="fundo" width="1080" height="1920"></canvas>
+    <div id="cenas"></div>
+    <svg id="laser" width="1080" height="1920" style="position:absolute;left:0;top:0;overflow:visible"></svg>
+    <canvas id="bot" width="1080" height="1920"></canvas>
+    <div id="scrim"></div>
+    <div id="passo"><i></i><div><small></small><b></b></div></div>
+    <div id="hud"></div>
+    <div id="legenda"></div>
+  </div>
+  <div id="flash"></div>
+</div>
+<script src="tempos.js"></script>
+<script type="module" src="cena.js"></script>
+</body>
+</html>

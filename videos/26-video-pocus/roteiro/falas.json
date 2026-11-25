@@ -1,0 +1,17 @@
+{
+  "_nota": "POCUS no estilo da TC de crânio (13): o macete dos cinco pês (praia, pulmão, pleura, poça e pericárdio) vira a barra de cima, sobre clipes reais de ultrassom do Commons. Linguagem técnica: o público é de médicos e estudantes de medicina (pedido do dono em 24/11/2026). O sinal do derrame volumoso é o da água-viva (jellyfish sign), o nome da literatura. Expositivo, sem quiz. 'fala' é o que a voz lê ([excited] e [serious] são marcações de interpretação); 'cena' liga a fala à animação.",
+  "voz": "pAPuuSJNHMlOqQrrh8hx",
+  "falas": [
+    { "cena": "gancho", "fala": "[excited] POCUS na emergência: com cinco pês você acha pneumotórax, hemoperitônio e tamponamento." },
+    { "cena": "gancho-2", "fala": "Decora: praia, pulmão, pleura, poça e pericárdio." },
+    { "cena": "regra", "fala": "Regra de ouro: líquido é anecoico, preto. Osso, cálculo e ar são hiperecoicos e geram sombra acústica posterior." },
+    { "cena": "praia", "fala": "Praia: no pulmão normal, a linha pleural desliza. No modo M, isso vira o sinal da praia: mar em cima, areia embaixo." },
+    { "cena": "pneumo", "fala": "[serious] Sem deslizamento pleural? Pensa em pneumotórax. E o ponto pulmonar, onde o deslizamento reaparece, é praticamente patognomônico." },
+    { "cena": "pulmao", "fala": "Pulmão: linhas B são artefatos verticais hiperecoicos que saem da pleura e vão até o fundo da tela. Três ou mais por espaço intercostal definem síndrome intersticial, como no edema agudo de pulmão." },
+    { "cena": "pleura", "fala": "Pleura: derrame é uma coleção anecoica acima do diafragma. No derrame volumoso, o pulmão atelectasiado ondula dentro do líquido: é o sinal da água-viva." },
+    { "cena": "poca", "fala": "Poça: no FAST, a janela hepatorrenal, o espaço de Morison, é a mais sensível. Faixa anecoica entre o fígado e o rim é líquido livre; no trauma, hemoperitônio até prova em contrário." },
+    { "cena": "pericardio", "fala": "Pericárdio: faixa anecoica ao redor do coração é derrame pericárdico. [serious] Colapso diastólico do ventrículo direito indica tamponamento." },
+    { "cena": "resumo", "fala": "Praia, pulmão, pleura, poça e pericárdio: os cinco pês do POCUS." },
+    { "cena": "fim", "fala": "[excited] Salva pro plantão e me segue pra próxima aula!" }
+  ]
+}

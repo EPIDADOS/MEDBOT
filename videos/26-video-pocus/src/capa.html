@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Capa · POCUS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700..800&family=Onest:wght@600..800&display=block" rel="stylesheet">
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+               "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/" } }
+</script>
+<style>
+  /* Capa do vídeo (1080 × 1920). O texto fica entre y 260 e 1660, a área que a grade do perfil mostra.
+     O macete em destaque, três quadros reais dos clipes e os cinco P. */
+  :root { --tinta: #0C1A21; --lima: #C1FF72; --alerta: #FF4D57; --titulo: 'Bricolage Grotesque', sans-serif; --texto: 'Onest', sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; }
+  #capa { position: relative; width: 1080px; height: 1920px; overflow: hidden; color: #fff;
+          background:
+            radial-gradient(70% 45% at 50% 58%, rgba(193,255,114,.16), transparent 70%),
+            repeating-linear-gradient(0deg, rgba(193,255,114,.05) 0 1px, transparent 1px 54px),
+            repeating-linear-gradient(90deg, rgba(193,255,114,.05) 0 1px, transparent 1px 54px),
+            radial-gradient(120% 90% at 50% 40%, #15323C, #081217); }
+  #capa::after { content: ''; position: absolute; inset: 0; background: radial-gradient(75% 60% at 50% 50%, transparent 55%, rgba(0,0,0,.6)); pointer-events: none; }
+  #bot { position: absolute; left: 0; top: 0; }
+  .linha { position: absolute; left: 0; right: 0; text-align: center; font: 800 200px/0.9 var(--titulo); letter-spacing: -.05em; }
+  #l1 { top: 250px; color: var(--lima); }
+  #l2 { top: 440px; font-size: 112px; }
+  #l3 { top: 575px; font-size: 44px; font-family: var(--texto); font-weight: 700; letter-spacing: 0; color: rgba(255,255,255,.85); }
+  #fotos { position: absolute; left: 60px; right: 60px; top: 680px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .foto { position: relative; height: 330px; border-radius: 28px; overflow: hidden; background: #000; box-shadow: 0 0 0 5px rgba(193,255,114,.85), 0 20px 50px rgba(0,0,0,.5); }
+  .foto img { position: absolute; width: 100%; height: 100%; object-fit: cover; }
+  .foto span { position: absolute; left: 14px; bottom: 14px; background: var(--lima); color: var(--tinta); font: 800 30px/1 var(--titulo); padding: 8px 14px; border-radius: 12px; }
+  #ps { position: absolute; left: 50px; right: 50px; top: 1080px; display: flex; flex-wrap: wrap; justify-content: center; gap: 18px 20px; }
+  .p { display: flex; align-items: center; gap: 14px; background: #fff; color: var(--tinta); font: 800 50px/1 var(--titulo); letter-spacing: -.03em;
+       padding: 14px 30px 14px 14px; border-radius: 999px; box-shadow: 0 14px 34px rgba(0,0,0,.45); }
+  .p i { font-style: normal; width: 66px; height: 66px; border-radius: 50%; background: var(--lima); display: flex; align-items: center; justify-content: center; font-size: 44px; }
+  #marca { position: absolute; left: 50%; top: 150px; transform: translateX(-50%); font: 800 48px var(--titulo); color: var(--lima); }
+</style>
+</head>
+<body>
+<div id="capa">
+  <div id="fotos">
+    <div class="foto"><img src="../assets/clipes/pericardio/f010.jpg" style="object-position:50% 45%" alt=""><span>pericárdio</span></div>
+    <div class="foto"><img src="../assets/clipes/blinhas/f046.jpg" style="object-position:45% 40%" alt=""><span>pulmão</span></div>
+    <div class="foto"><img src="../assets/clipes/fast/f001.jpg" style="object-position:55% 45%" alt=""><span>poça</span></div>
+  </div>
+  <div id="ps"><div class="p"><i>P</i>Praia</div><div class="p"><i>P</i>Pulmão</div><div class="p"><i>P</i>Pleura</div><div class="p"><i>P</i>Poça</div><div class="p"><i>P</i>Pericárdio</div></div>
+  <canvas id="bot" width="1080" height="1920"></canvas>
+  <div class="linha" id="l1">Os 5 Ps</div>
+  <div class="linha" id="l2">do POCUS</div>
+  <div class="linha" id="l3">o ultrassom da emergência num macete</div>
+  <div id="marca">@omedbot</div>
+</div>
+<script type="module">
+  import { criarPalco, carregarMedbot } from '../../_personagem/web/medbot-3d.js';
+  const palco = criarPalco(document.getElementById('bot'));
+  const bot = await carregarMedbot(palco, '../../_personagem/web/medbot.glb');
+  await document.fonts.ready;
+  await Promise.all([...document.images].map(i => i.decode().catch(() => {})));
+  bot.pose({ x: 540, y: 1720, tamanho: 300, yaw: 0.1, roll: 0.06, estica: 1.04, olhar: [0, 26], olho: [1.28, 0.5, 0], pisca: 1, boca: 0.75, pendulo: [0.1, -0.2] });
+  palco.render();
+  window.pronto = true;
+</script>
+</body>
+</html>

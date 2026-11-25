@@ -1,0 +1,4 @@
+numpy>=1.26
+Pillow>=10
+# só para tirar setas e letras de autores nas imagens (fotos.py do vídeo 13, que usa inpainting do OpenCV)
+opencv-python>=4.8

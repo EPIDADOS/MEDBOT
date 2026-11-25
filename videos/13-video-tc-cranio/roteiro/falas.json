@@ -1,0 +1,21 @@
+{
+  "_nota": "Como ler uma TC de crânio na emergência (Blood Can Be Very Bad). 'fala' é o que a voz lê (Eleven v3; [excited] e [serious] são marcações de interpretação, não são lidas); 'legenda' é o que aparece escrito quando difere; 'cena' liga a fala à animação.",
+  "voz": "pAPuuSJNHMlOqQrrh8hx",
+  "falas": [
+    { "cena": "gancho", "fala": "[excited] TC de crânio na emergência. O que você procura primeiro?" },
+    { "cena": "gancho-2", "fala": "Decora essa frase: Blood Can Be Very Bad." },
+    { "cena": "regra", "fala": "Regra de ouro: quanto mais denso, mais branco." },
+    { "cena": "regra-escala", "fala": "Ar é preto, líquor é escuro, osso é branco, e sangue fresco também é branco." },
+    { "cena": "blood", "fala": "Blood, sangue: procura branco onde não devia." },
+    { "cena": "epidural", "fala": "Em lente, sem cruzar as suturas? Epidural, da artéria meníngea média." },
+    { "cena": "subdural", "fala": "Em meia-lua, cruzando as suturas? Subdural, das veias ponte, clássico no idoso." },
+    { "cena": "hsa", "fala": "Nas cisternas e nos sulcos? Subaracnoide. Sem trauma, pensa em aneurisma." },
+    { "cena": "cisternas", "fala": "Can, cisternas: as da base têm que estar abertas. Apagadas? Hipertensão intracraniana e risco de herniação." },
+    { "cena": "cerebro", "fala": "Be, de brain: compara os dois lados. Sumiu a diferença entre a branca e a cinzenta? Pode ser AVC isquêmico." },
+    { "cena": "avc", "fala": "[serious] Mas nas primeiras horas a TC pode vir normal: ela serve pra excluir sangramento antes do trombolítico." },
+    { "cena": "ventriculos", "fala": "Very, ventrículos: dilatados? Hidrocefalia. Empurrados? Efeito de massa e desvio da linha média." },
+    { "cena": "osso", "fala": "Bad, de bone: janela óssea pra caçar fratura. Ar dentro do crânio no trauma? Fratura comunicando." },
+    { "cena": "resumo", "fala": "Sangue, cisternas, cérebro, ventrículos e osso: Blood Can Be Very Bad." },
+    { "cena": "fim", "fala": "[excited] Salva e me segue pra próxima aula!" }
+  ]
+}

@@ -1,0 +1,21 @@
+# dependências (npm install recria)
+node_modules/
+__pycache__/
+
+# chaves
+.env
+.env.local
+.env.*.local
+
+# o que cada vídeo gera (o render, as stills, a voz acelerada e a mixagem saem de novo pelos comandos)
+videos/*/out/
+videos/*/assets/audio/**/*.wav
+videos/*/assets/clipes/_grade-*
+videos/*/assets/fotos/prep/_grade-*
+
+# vídeos de origem com dado de paciente no cabeçalho ficam só na máquina; o repositório guarda os quadros recortados
+videos/*/assets/fotos/*.ogv
+videos/*/assets/fotos/*.webm
+videos/*/assets/fotos/*.mpg
+videos/*/assets/fotos/*.avi
+videos/*/assets/fotos/*.mp4

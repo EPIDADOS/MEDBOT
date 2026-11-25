@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Capa · Tipos de sutura</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700..800&family=Onest:wght@600..800&display=block" rel="stylesheet">
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+               "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/" } }
+</script>
+<style>
+  /* Capa do vídeo (1080 × 1920). O texto fica entre y 260 e 1660, a área que a grade do perfil mostra.
+     O título, o esquema do Donati tirado do próprio vídeo e os cinco pontos. */
+  :root { --tinta: #0C1A21; --lima: #C1FF72; --titulo: 'Bricolage Grotesque', sans-serif; --texto: 'Onest', sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; }
+  #capa { position: relative; width: 1080px; height: 1920px; overflow: hidden; color: #fff;
+          background:
+            radial-gradient(70% 45% at 50% 58%, rgba(193,255,114,.16), transparent 70%),
+            repeating-linear-gradient(0deg, rgba(193,255,114,.05) 0 1px, transparent 1px 54px),
+            repeating-linear-gradient(90deg, rgba(193,255,114,.05) 0 1px, transparent 1px 54px),
+            radial-gradient(120% 90% at 50% 40%, #15323C, #081217); }
+  #capa::after { content: ''; position: absolute; inset: 0; background: radial-gradient(75% 60% at 50% 50%, transparent 55%, rgba(0,0,0,.6)); pointer-events: none; }
+  #bot { position: absolute; left: 0; top: 0; }
+  .linha { position: absolute; left: 0; right: 0; text-align: center; font: 800 128px/0.9 var(--titulo); letter-spacing: -.05em; }
+  #l1 { top: 270px; }
+  #l1 b { color: var(--lima); font-weight: 800; }
+  #l2 { top: 410px; font-size: 62px; }
+  #l2 span { display: inline-block; background: var(--lima); color: var(--tinta); padding: 6px 30px 16px; border-radius: 26px; transform: rotate(-2deg); }
+  #esq { position: absolute; left: 60px; top: 545px; width: 960px; height: 700px; border-radius: 40px; overflow: hidden;
+         box-shadow: 0 0 0 4px rgba(193,255,114,.5), 0 30px 70px rgba(0,0,0,.55); }
+  #esq img { width: 100%; height: 100%; display: block; }
+  #ps { position: absolute; left: 40px; right: 40px; top: 1285px; display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 16px; }
+  .p { display: flex; align-items: center; gap: 12px; background: #fff; color: var(--tinta); font: 800 44px/1 var(--titulo); letter-spacing: -.03em;
+       padding: 12px 26px 12px 12px; border-radius: 999px; box-shadow: 0 14px 34px rgba(0,0,0,.45); }
+  .p i { font-style: normal; width: 58px; height: 58px; border-radius: 50%; background: var(--lima); display: flex; align-items: center; justify-content: center; font-size: 38px; }
+  #marca { position: absolute; left: 50%; top: 150px; transform: translateX(-50%); font: 800 48px var(--titulo); color: var(--lima); }
+</style>
+</head>
+<body>
+<div id="capa">
+  <div id="esq"><img src="../out/capa-esquema.jpg" alt=""></div>
+  <div id="ps"><div class="p"><i>1</i>Simples</div><div class="p"><i>2</i>Donati</div><div class="p"><i>3</i>Em U</div><div class="p"><i>4</i>Intradérmico</div><div class="p"><i>5</i>Chuleio</div></div>
+  <canvas id="bot" width="1080" height="1920"></canvas>
+  <div class="linha" id="l1">Tipos de <b>sutura</b></div>
+  <div class="linha" id="l2"><span>5 pontos e quando usar cada um</span></div>
+  <div id="marca">@omedbot</div>
+</div>
+<script type="module">
+  import { criarPalco, carregarMedbot } from '../../_personagem/web/medbot-3d.js';
+  const palco = criarPalco(document.getElementById('bot'));
+  const bot = await carregarMedbot(palco, '../../_personagem/web/medbot.glb');
+  await document.fonts.ready;
+  await Promise.all([...document.images].map(i => i.decode().catch(() => {})));
+  bot.pose({ x: 540, y: 1720, tamanho: 300, yaw: 0.1, roll: 0.06, estica: 1.04, olhar: [0, 26], olho: [1.28, 0.5, 0], pisca: 1, boca: 0.75, pendulo: [0.1, -0.2] });
+  palco.render();
+  window.pronto = true;
+</script>
+</body>
+</html>

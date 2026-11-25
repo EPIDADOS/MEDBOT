@@ -1,0 +1,155 @@
+{
+  "normal08": {
+    "arquivo": "normal08.png",
+    "titulo": "File:CT of a normal brain, axial 8.png",
+    "pagina": "https://commons.wikimedia.org/wiki/File:CT_of_a_normal_brain,_axial_8.png",
+    "licenca": "CC0",
+    "licenca_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "autor": "Mikael Häggström, M.D. Author info - Reusing images- Conflicts of interest: None Mikael Häggström, M.D.Consent note: Written informed consent was obtained from the individual, including online publication.",
+    "original": "646x468"
+  },
+  "normal11": {
+    "arquivo": "normal11.png",
+    "titulo": "File:CT of a normal brain, axial 11.png",
+    "pagina": "https://commons.wikimedia.org/wiki/File:CT_of_a_normal_brain,_axial_11.png",
+    "licenca": "CC0",
+    "licenca_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "autor": "Mikael Häggström, M.D. Author info - Reusing images- Conflicts of interest: None Mikael Häggström, M.D.Consent note: Written informed consent was obtained from the individual, including online publication.",
+    "original": "646x468"
+  },
+  "normal16": {
+    "arquivo": "normal16.png",
+    "titulo": "File:CT of a normal brain, axial 16.png",
+    "pagina": "https://commons.wikimedia.org/wiki/File:CT_of_a_normal_brain,_axial_16.png",
+    "licenca": "CC0",
+    "licenca_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "autor": "Mikael Häggström, M.D. Author info - Reusing images- Conflicts of interest: None Mikael Häggström, M.D.Consent note: Written informed consent was obtained from the individual, including online publication.",
+    "original": "646x468"
+  },
+  "normal21": {
+    "arquivo": "normal21.png",
+    "titulo": "File:CT of a normal brain, axial 21.png",
+    "pagina": "https://commons.wikimedia.org/wiki/File:CT_of_a_normal_brain,_axial_21.png",
+    "licenca": "CC0",
+    "licenca_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "autor": "Mikael Häggström, M.D. Author info - Reusing images- Conflicts of interest: None Mikael Häggström, M.D.Consent note: Written informed consent was obtained from the individual, including online publication.",
+    "original": "646x468"
+  },
+  "epidural": {
+    "arquivo": "epidural.jpg",
+    "titulo": "File:EpiduralHematoma.jpg",
+    "pagina": "https://commons.wikimedia.org/wiki/File:EpiduralHematoma.jpg",
+    "licenca": "CC BY-SA 4.0",
+    "licenca_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "autor": "James Heilman, MD",
+    "original": "784x963"
+  },
+  "subdural": {
+    "arquivo": "subdural.jpg",
+    "titulo": "File:Trauma subdural.jpg",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Trauma_subdural.jpg",
+    "licenca": "Public domain",
+    "licenca_url": "",
+    "autor": "Glitzy queen00 at English Wikipedia",
+    "original": "1159x1415"
+  },
+  "desvio": {
+    "arquivo": "desvio.png",
+    "titulo": "File:Intracranial bleed with significant midline shift.png",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Intracranial_bleed_with_significant_midline_shift.png",
+    "licenca": "CC BY-SA 3.0",
+    "licenca_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "autor": "James Heilman, MD",
+    "original": "745x850"
+  },
+  "hsa": {
+    "arquivo": "hsa.jpg",
+    "titulo": "File:Subarachnoid hemorrhage CT.jpg",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Subarachnoid_hemorrhage_CT.jpg",
+    "licenca": "CC BY-SA 3.0",
+    "licenca_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "autor": "Dr. George Jallo, pediatric neurosurgeon at Johns Hopkins",
+    "original": "476x596"
+  },
+  "hidro": {
+    "arquivo": "hidro.jpg",
+    "titulo": "File:Hydrocephalus.jpg",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Hydrocephalus.jpg",
+    "licenca": "CC BY-SA 3.0",
+    "licenca_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "autor": "Lucien Monfils",
+    "original": "512x512"
+  },
+  "avc": {
+    "arquivo": "avc.jpg",
+    "titulo": "File:CT Brain MCA Infarct.jpg",
+    "pagina": "https://commons.wikimedia.org/wiki/File:CT_Brain_MCA_Infarct.jpg",
+    "licenca": "CC BY-SA 4.0",
+    "licenca_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "autor": "Lucien Monfils",
+    "original": "2000x2502"
+  },
+  "fratura": {
+    "arquivo": "fratura.jpg",
+    "titulo": "File:CT brain bone window showing right temporal bone fracture.jpg",
+    "pagina": "https://commons.wikimedia.org/wiki/File:CT_brain_bone_window_showing_right_temporal_bone_fracture.jpg",
+    "licenca": "CC BY-SA 4.0",
+    "licenca_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "autor": "Cerevisae",
+    "original": "512x512"
+  },
+  "pneumo": {
+    "arquivo": "pneumo.png",
+    "titulo": "File:PneumocephalyFracFrontSinus.png",
+    "pagina": "https://commons.wikimedia.org/wiki/File:PneumocephalyFracFrontSinus.png",
+    "licenca": "CC BY-SA 4.0",
+    "licenca_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "autor": "James Heilman, MD",
+    "original": "926x793"
+  },
+  "normal26": {
+    "arquivo": "normal26.png",
+    "titulo": "File:CT of a normal brain, axial 26.png",
+    "pagina": "https://commons.wikimedia.org/wiki/File:CT_of_a_normal_brain,_axial_26.png",
+    "licenca": "CC0",
+    "licenca_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "autor": "Mikael Häggström, M.D. Author info - Reusing images- Conflicts of interest: None Mikael Häggström, M.D.Consent note: Written informed consent was obtained from the individual, including online publication.",
+    "original": "646x468"
+  },
+  "normal27": {
+    "arquivo": "normal27.png",
+    "titulo": "File:CT of a normal brain, axial 27.png",
+    "pagina": "https://commons.wikimedia.org/wiki/File:CT_of_a_normal_brain,_axial_27.png",
+    "licenca": "CC0",
+    "licenca_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "autor": "Mikael Häggström, M.D. Author info - Reusing images- Conflicts of interest: None Mikael Häggström, M.D.Consent note: Written informed consent was obtained from the individual, including online publication.",
+    "original": "646x468"
+  },
+  "epidural2": {
+    "arquivo": "epidural2.jpg",
+    "titulo": "File:Epidurales Haematom.jpg",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Epidurales_Haematom.jpg",
+    "licenca": "CC BY-SA 3.0",
+    "licenca_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "autor": "Hellerhoff",
+    "original": "452x514"
+  },
+  "hsa2": {
+    "arquivo": "hsa2.jpg",
+    "titulo": "File:Subarachnoid haemorrhage.jpg",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Subarachnoid_haemorrhage.jpg",
+    "licenca": "CC BY-SA 3.0",
+    "licenca_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "autor": "Lipothymia",
+    "original": "663x841"
+  },
+  "subdural2": {
+    "arquivo": "subdural2.png",
+    "titulo": "File:Subduralandherniation.PNG",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Subduralandherniation.PNG",
+    "licenca": "CC BY-SA 3.0",
+    "licenca_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "autor": "James Heilman, MD",
+    "original": "774x965"
+  }
+}

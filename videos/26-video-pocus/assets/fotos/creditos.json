@@ -1,0 +1,84 @@
+{
+ "pedra": {
+  "arquivo": "pedra.jpg",
+  "titulo": "File:Ultrasound image of gallbladder stone Gallstone 091937515.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Ultrasound_image_of_gallbladder_stone_Gallstone_091937515.jpg",
+  "licenca": "CC BY-SA 3.0",
+  "licenca_url": "https://creativecommons.org/licenses/by-sa/3.0",
+  "autor": "Nevit Dilmen",
+  "original": "784x576",
+  "nota": "a mesma imagem do vídeo 24"
+ },
+ "praia": {
+  "arquivo": "praia.jpg",
+  "titulo": "File:Sea shore sign on a lung ultrasound.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Sea_shore_sign_on_a_lung_ultrasound.jpg",
+  "licenca": "CC BY-SA 4.0",
+  "licenca_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "autor": "Tinss",
+  "original": "1536x846"
+ },
+ "desliza": {
+  "arquivo": "desliza.mpg",
+  "titulo": "File:Portable-bedside-ultrasound-the-visual-stethoscope-of-the-21st-century-1757-7241-20-18-S1.ogv",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Portable-bedside-ultrasound-the-visual-stethoscope-of-the-21st-century-1757-7241-20-18-S1.ogv",
+  "licenca": "CC BY 2.0",
+  "licenca_url": "https://creativecommons.org/licenses/by/2.0",
+  "autor": "Gillman L, Kirkpatrick A",
+  "nota": "baixado pela API do Europe PMC (PMC3352312, arquivo adicional 1), o mesmo vídeo do Commons; deslizamento pleural normal"
+ },
+ "blinhas": {
+  "arquivo": "blinhas.avi",
+  "titulo": "File:Lung-ultrasound-a-new-tool-for-the-cardiologist-1476-7120-9-6-S2.ogv",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Lung-ultrasound-a-new-tool-for-the-cardiologist-1476-7120-9-6-S2.ogv",
+  "licenca": "CC BY 2.0",
+  "licenca_url": "https://creativecommons.org/licenses/by/2.0",
+  "autor": "Gargani L",
+  "nota": "baixado pela API do Europe PMC (PMC3059291, arquivo adicional 2), o mesmo vídeo do Commons; síndrome intersticial, várias linhas B"
+ },
+ "pleural": {
+  "arquivo": "pleural2.ogv",
+  "titulo": "File:Portable-bedside-ultrasound-the-visual-stethoscope-of-the-21st-century-1757-7241-20-18-S7.ogv",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Portable-bedside-ultrasound-the-visual-stethoscope-of-the-21st-century-1757-7241-20-18-S7.ogv",
+  "licenca": "CC BY 2.0",
+  "licenca_url": "https://creativecommons.org/licenses/by/2.0",
+  "autor": "Gillman L, Kirkpatrick A",
+  "nota": "baixado pelo dono no Commons; derrame pleural acima do diafragma"
+ },
+ "fast": {
+  "arquivo": "fast.ogv",
+  "titulo": "File:Clinician-performed-resuscitative-ultrasonography-for-the-initial-evaluation-and-resuscitation-of-1757-7241-17-34-S1.ogv",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Clinician-performed-resuscitative-ultrasonography-for-the-initial-evaluation-and-resuscitation-of-1757-7241-17-34-S1.ogv",
+  "licenca": "CC BY 2.0",
+  "licenca_url": "https://creativecommons.org/licenses/by/2.0",
+  "autor": "Gillman L, Ball C, Panebianco N, Al-Kadi A, Kirkpatrick A",
+  "nota": "baixado pelo dono no Commons; FAST positivo no hepatorrenal"
+ },
+ "naodesliza": {
+  "arquivo": "naodesliza.ogv",
+  "titulo": "File:Clinician-performed-resuscitative-ultrasonography-for-the-initial-evaluation-and-resuscitation-of-1757-7241-17-34-S4.ogv",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Clinician-performed-resuscitative-ultrasonography-for-the-initial-evaluation-and-resuscitation-of-1757-7241-17-34-S4.ogv",
+  "licenca": "CC BY 2.0",
+  "licenca_url": "https://creativecommons.org/licenses/by/2.0",
+  "autor": "Gillman L, Ball C, Panebianco N, Al-Kadi A, Kirkpatrick A",
+  "nota": "baixado pelo dono no Commons; sem deslizamento pleural (o cabeçalho com nome e número fica fora do recorte)"
+ },
+ "ponto": {
+  "arquivo": "ponto.ogv",
+  "titulo": "File:Clinician-performed-resuscitative-ultrasonography-for-the-initial-evaluation-and-resuscitation-of-1757-7241-17-34-S7.ogv",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Clinician-performed-resuscitative-ultrasonography-for-the-initial-evaluation-and-resuscitation-of-1757-7241-17-34-S7.ogv",
+  "licenca": "CC BY 2.0",
+  "licenca_url": "https://creativecommons.org/licenses/by/2.0",
+  "autor": "Gillman L, Ball C, Panebianco N, Al-Kadi A, Kirkpatrick A",
+  "nota": "baixado pelo dono no Commons; ponto pulmonar (o cabeçalho com número fica fora do recorte)"
+ },
+ "pericardio": {
+  "arquivo": "pericardio.webm",
+  "titulo": "File:Pericardial effusion, \"swinging heart\" E00667 (CardioNetworks ECHOpedia).webm",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Pericardial_effusion,_\"swinging_heart\"_E00667_(CardioNetworks_ECHOpedia).webm",
+  "licenca": "CC BY-SA 3.0",
+  "licenca_url": "https://creativecommons.org/licenses/by-sa/3.0",
+  "autor": "CardioNetworks (ECHOpedia; AMC Echolab, AMC, Holanda)",
+  "nota": "baixado pelo dono no Commons; derrame pericárdico volumoso, coração balançando (eixo longo paraesternal)"
+ }
+}

@@ -1,0 +1,15 @@
+{
+  "_nota": "Tipos de sutura no estilo da TC de crânio (13): cinco pontos viram a barra de cima e cada um é um capítulo, com o trajeto da agulha animado em esquema (vista de cima e corte da pele, marcado ESQUEMA) e fotos reais quando houver. Linguagem técnica: o público é de médicos e estudantes de medicina. Expositivo, sem quiz. 'fala' é o que a voz lê ([excited] e [serious] são marcações de interpretação); 'cena' liga a fala à animação.",
+  "voz": "pAPuuSJNHMlOqQrrh8hx",
+  "falas": [
+    { "cena": "gancho", "fala": "[excited] Sutura no plantão: cinco pontos que todo interno precisa dominar, e quando usar cada um." },
+    { "cena": "regra", "fala": "Regra de ouro: everter as bordas. Borda invertida cicatriza pior e alarga a cicatriz." },
+    { "cena": "simples", "fala": "Um: ponto simples separado, o coringa. Agulha perpendicular à pele, mesma distância e mesma profundidade dos dois lados; se um ponto rompe, os outros seguram." },
+    { "cena": "donati", "fala": "Dois: Donati, o colchoeiro vertical. Longe-longe, perto-perto: a passada profunda aproxima, a superficial everte. Bom para áreas de tensão e bordas que tendem a inverter." },
+    { "cena": "u", "fala": "Três: colchoeiro horizontal, o ponto em U. Distribui a tensão e faz hemostasia; útil em pele friável, como a do idoso." },
+    { "cena": "intradermico", "fala": "Quatro: intradérmico. O fio corre na derme, paralelo à superfície, sem marcas de ponto na pele; é o da cirurgia plástica e da cesárea, com fio absorvível monofilamentar." },
+    { "cena": "chuleio", "fala": "Cinco: chuleio, a sutura contínua. É rápido e distribui a tensão, mas, se o fio romper, a ferida inteira abre." },
+    { "cena": "resumo", "fala": "Simples, Donati, em U, intradérmico e chuleio. E a retirada: face em cinco dias, couro cabeludo e tronco em sete a dez, membros em dez a catorze." },
+    { "cena": "fim", "fala": "[excited] Salva pro plantão e me segue pra próxima aula!" }
+  ]
+}

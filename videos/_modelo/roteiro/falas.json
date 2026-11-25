@@ -1,0 +1,16 @@
+{
+  "_nota": "Roteiro do vídeo. Cada fala tem uma 'cena' (o nome que src/cena.js usa para saber o que mostrar) e a 'fala' que a voz lê. [excited] e [serious] são marcações de interpretação do Eleven v3 e não aparecem na legenda. Linguagem técnica (o público é de médicos e estudantes), sem travessão, sem perguntas ao público. Troque os textos abaixo, mantenha o gancho, a regra de ouro, de 4 a 6 capítulos, o resumo e o fim.",
+  "voz": "pAPuuSJNHMlOqQrrh8hx",
+  "falas": [
+    { "cena": "gancho", "fala": "[excited] Tema na emergência: com o macete você acha o diagnóstico A, o B e o C." },
+    { "cena": "gancho-2", "fala": "Decora: primeiro, segundo, terceiro, quarto e quinto." },
+    { "cena": "regra", "fala": "Regra de ouro: a frase que resolve metade dos casos." },
+    { "cena": "cap1", "fala": "Primeiro: o que é, como aparece na imagem e o que muda a conduta." },
+    { "cena": "cap2", "fala": "Segundo: o que é, como aparece na imagem e o que muda a conduta." },
+    { "cena": "cap3", "fala": "Terceiro: o que é, como aparece na imagem e o que muda a conduta." },
+    { "cena": "cap4", "fala": "Quarto: o que é, como aparece na imagem e o que muda a conduta." },
+    { "cena": "cap5", "fala": "Quinto: o que é, como aparece na imagem e o que muda a conduta." },
+    { "cena": "resumo", "fala": "Primeiro, segundo, terceiro, quarto e quinto: o macete inteiro." },
+    { "cena": "fim", "fala": "[excited] Salva pro plantão e me segue pra próxima aula!" }
+  ]
+}

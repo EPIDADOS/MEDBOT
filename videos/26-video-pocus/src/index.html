@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Os 5 P do POCUS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700..800&family=Onest:wght@500..800&display=block" rel="stylesheet">
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+               "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/" } }
+</script>
+<style>
+  /* Vídeo vertical 1080 × 1920 a 30 fps. Camadas: fundo (canvas), cenas (HTML e SVG), laser, Medbot 3D (three.js),
+     barra de capítulos, legenda e flash. Tudo é calculado a partir do tempo em window.seek(t). */
+  :root { --tinta: #0C1A21; --lima: #C1FF72; --alerta: #FF4D57; --suave: #8FA6AD;
+          --titulo: 'Bricolage Grotesque', sans-serif; --texto: 'Onest', sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--tinta); }
+  #tela { position: absolute; inset: 0; overflow: hidden; color: #fff; font-family: var(--texto); }
+  #mundo { position: absolute; inset: 0; will-change: transform; }
+  canvas { position: absolute; left: 0; top: 0; }
+  .cena { position: absolute; inset: 0; visibility: hidden; }
+  .neon { filter: drop-shadow(0 0 6px rgba(193,255,114,.95)) drop-shadow(0 0 18px rgba(193,255,114,.55)); }
+  .neon-v { filter: drop-shadow(0 0 6px rgba(255,77,87,.95)) drop-shadow(0 0 18px rgba(255,77,87,.55)); }
+
+  /* Gancho */
+  .manchete { position: absolute; left: 40px; right: 40px; text-align: center; font: 800 96px/0.98 var(--titulo); letter-spacing: -.05em; }
+  .manchete span { display: block; }
+  .manchete b { color: var(--lima); font-weight: 800; }
+
+  /* Frase do mito (cartão branco) e as pílulas */
+  .pilula { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 16px; white-space: nowrap; background: #fff; color: var(--tinta);
+            font: 800 52px/1 var(--titulo); letter-spacing: -.03em; padding: 20px 34px 20px 22px; border-radius: 999px; box-shadow: 0 16px 40px rgba(0,0,0,.45); }
+  .pilula i { width: 54px; height: 54px; border-radius: 50%; background: var(--tinta); color: var(--lima); display: flex; align-items: center; justify-content: center; flex: none; }
+  .pilula i svg { width: 30px; height: 30px; }
+  .pilula.escura { background: var(--tinta); color: #fff; border: 4px solid rgba(255,255,255,.35); }
+  .pilula.lima { background: var(--lima); }
+  .pilula em { font-style: normal; font: 800 26px/1 var(--titulo); letter-spacing: .04em; padding: 9px 14px; border-radius: 12px; background: var(--alerta); color: #fff; margin-left: 6px; }
+  .pilula.lima em { background: var(--tinta); color: var(--lima); }
+  .risco { background: linear-gradient(var(--alerta), var(--alerta)) no-repeat 0 56% / 0% 10px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  #mc { position: absolute; left: 0; top: 0; width: 900px; background: #fff; color: var(--tinta); border-radius: 44px; padding: 76px 60px 56px;
+        box-shadow: 0 40px 90px rgba(0,0,0,.55); transform-origin: center; visibility: hidden; }
+  #mc .rotulo { position: absolute; left: 50px; top: -30px; display: flex; align-items: center; gap: 12px; background: var(--tinta); color: #fff; white-space: nowrap;
+                border: 3px solid rgba(255,255,255,.45); font: 800 32px/1 var(--titulo); padding: 12px 24px 12px 14px; border-radius: 999px; }
+  #mc .rotulo svg { width: 34px; height: 34px; color: var(--lima); }
+  #mc .aspas { position: absolute; right: 44px; top: -44px; width: 96px; height: 96px; border-radius: 50%; background: var(--lima); color: var(--tinta);
+               display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 26px rgba(0,0,0,.35); }
+  #mc .aspas svg { width: 52px; height: 52px; }
+  #mc .frase { font: 800 84px/1.04 var(--titulo); letter-spacing: -.045em; }
+  .carimbo { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); white-space: nowrap; border: 12px solid var(--alerta); color: var(--alerta);
+             font: 800 150px/1 var(--titulo); letter-spacing: .02em; padding: 8px 40px 16px; border-radius: 30px; background: rgba(255,255,255,.88); }
+  .carimbo.cheio { background: var(--alerta); color: #fff; border-color: #fff; box-shadow: 0 30px 80px rgba(0,0,0,.55), 0 0 0 12px rgba(255,77,87,.3); }
+
+  /* Cartão de capítulo (voa para a barra de cima) */
+  #passo { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 30px; white-space: nowrap; visibility: hidden; transform-origin: center;
+           font: 800 140px/1 var(--titulo); letter-spacing: -.05em; }
+  #passo i { font-style: normal; width: 190px; height: 190px; border-radius: 50%; background: var(--lima); color: var(--tinta); display: flex; align-items: center; justify-content: center; font-size: 130px; }
+  #passo small { display: block; font: 700 46px/1 var(--texto); color: var(--lima); letter-spacing: 0; margin-bottom: 8px; }
+  #scrim { position: absolute; inset: 0; background: radial-gradient(60% 40% at 50% 36%, rgba(8,18,23,.85), rgba(8,18,23,.55)); pointer-events: none; }
+
+  /* Barra de capítulos */
+  #hud { position: absolute; left: 60px; right: 60px; top: 168px; display: flex; gap: 12px; }
+  #hud div { flex: 1; }
+  #hud span { display: block; font: 800 22px/1 var(--titulo); letter-spacing: -.01em; color: rgba(255,255,255,.45); margin-bottom: 10px; text-align: center; white-space: nowrap; }
+  #hud span em { font-style: normal; color: var(--lima); }
+  #hud b { display: block; height: 14px; border-radius: 999px; background: rgba(255,255,255,.14); overflow: hidden; }
+  #hud b i { display: block; height: 100%; width: 0; background: var(--lima); border-radius: 999px; box-shadow: 0 0 14px rgba(193,255,114,.8); }
+  #hud div.ativo span, #hud div.feito span { color: #fff; }
+  #hud div.ativo span { color: var(--lima); }
+
+  /* Visor da imagem real */
+  .visor { position: absolute; border-radius: 40px; overflow: hidden; background: #000; visibility: hidden;
+           box-shadow: 0 40px 90px rgba(0,0,0,.6), 0 0 0 3px rgba(193,255,114,.25), inset 0 0 0 1px rgba(255,255,255,.06); }
+  .visor img { position: absolute; display: none; max-width: none; }
+  .credito { position: absolute; right: 16px; top: 14px; font: 600 15px var(--texto); color: rgba(255,255,255,.88); background: rgba(0,0,0,.45); padding: 4px 10px; border-radius: 8px; }
+
+  /* Marcações */
+  .chip { position: absolute; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 12px; white-space: nowrap; background: var(--tinta);
+          color: var(--lima); border: 3px solid var(--lima); font: 800 40px/1 var(--titulo); padding: 14px 22px; border-radius: 999px; box-shadow: 0 14px 34px rgba(0,0,0,.45); }
+  .chip svg { width: 1em; height: 1em; }
+  .chip.alerta { border-color: var(--alerta); color: #fff; background: var(--alerta); }
+  .ptag { position: absolute; transform: translate(-50%, -50%); font: 800 34px/1 var(--titulo); white-space: nowrap; padding: 10px 18px; border-radius: 14px;
+          background: var(--lima); color: var(--tinta); box-shadow: 0 8px 20px rgba(0,0,0,.4); }
+  .ptag.alerta { background: var(--alerta); color: #fff; }
+  .ptag.escura { background: var(--tinta); color: var(--lima); border: 3px solid var(--lima); }
+  .ptag svg { width: 1em; height: 1em; vertical-align: -.15em; }
+  .selo { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); white-space: nowrap; text-align: center;
+          background: var(--lima); color: var(--tinta); font: 800 96px/1 var(--titulo); letter-spacing: -.04em; padding: 30px 46px; border-radius: 34px;
+          box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 0 0 10px rgba(193,255,114,.22); }
+  .selo .vt { display: inline-flex; align-items: center; gap: 8px; font: 800 .4em/1 var(--titulo); letter-spacing: .06em; background: var(--tinta); color: var(--lima);
+              padding: 8px 16px 8px 10px; border-radius: 999px; margin-bottom: 12px; }
+  .selo .vt svg { width: 1.2em; height: 1.2em; }
+
+  /* Resumo */
+  .linha { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 28px; white-space: nowrap; transform-origin: left center; }
+  .linha .letra { width: 96px; height: 96px; border-radius: 50%; background: var(--lima); color: var(--tinta); display: flex; align-items: center; justify-content: center;
+                  font: 800 62px/1 var(--titulo); box-shadow: 0 0 0 7px rgba(193,255,114,.22), 0 14px 30px rgba(0,0,0,.45); flex: none; }
+  .linha .en { font: 800 62px/1 var(--titulo); letter-spacing: -.04em; color: #fff; }
+
+  /* Legenda */
+  #legenda { position: absolute; left: 40px; right: 40px; height: 230px; display: flex; flex-wrap: wrap; align-content: center; justify-content: center;
+             column-gap: 22px; row-gap: 0; text-align: center; font: 800 92px/1.04 var(--titulo); letter-spacing: -.035em; pointer-events: none; }
+  #legenda span { display: inline-block; color: #fff; transform-origin: 50% 70%;
+                  text-shadow: 0 6px 0 rgba(0,0,0,.55), 5px 0 0 var(--tinta), -5px 0 0 var(--tinta), 0 5px 0 var(--tinta), 0 -5px 0 var(--tinta),
+                               4px 4px 0 var(--tinta), -4px 4px 0 var(--tinta), 4px -4px 0 var(--tinta), -4px -4px 0 var(--tinta); }
+  #legenda span.agora { color: var(--lima); }
+
+  /* Fim */
+  .botao { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 22px; white-space: nowrap;
+           background: #fff; color: var(--tinta); font: 800 66px/1 var(--titulo); letter-spacing: -.03em; padding: 24px 36px 24px 26px; border-radius: 999px;
+           box-shadow: 0 24px 60px rgba(0,0,0,.45); }
+  .botao span { width: 96px; height: 96px; border-radius: 50%; background: var(--tinta); color: var(--lima); display: flex; align-items: center; justify-content: center; }
+  .botao span svg { width: 54px; height: 54px; }
+  .botao.lima { background: var(--lima); }
+  #marca { position: absolute; left: 540px; top: 1690px; transform: translate(-50%, -50%); font: 800 50px var(--titulo); white-space: nowrap; color: var(--lima); }
+  #flash { position: absolute; inset: 0; pointer-events: none; }
+
+  /* POCUS: visor de ultrassom, lista dos 5 P e régua de cinza */
+  .visor { background: #000; }
+  .visor img.quadro { position: absolute; display: block; max-width: none; }
+  .pacs { position: absolute; font: 700 22px/1.25 var(--texto); color: #9FB4BA; letter-spacing: .02em; white-space: nowrap; text-transform: uppercase; z-index: 2; }
+  .pacs b { color: var(--lima); font-weight: 800; }
+  .pacs.tl { left: 26px; top: 20px; } .pacs.tr { right: 26px; top: 20px; text-align: right; } .pacs.bl { left: 26px; bottom: 18px; }
+  .visor .credito { top: auto; bottom: 14px; right: 16px; z-index: 2; }
+  .lista { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 26px; white-space: nowrap; transform-origin: left center; }
+  .lista .letra { width: 108px; height: 108px; border-radius: 50%; background: var(--lima); color: var(--tinta); display: flex; align-items: center; justify-content: center;
+                  font: 800 74px/1 var(--titulo); box-shadow: 0 0 0 7px rgba(193,255,114,.22), 0 14px 30px rgba(0,0,0,.45); flex: none; }
+  .lista .nome { font: 800 86px/0.95 var(--titulo); letter-spacing: -.04em; color: #fff; }
+  .lista .sub { font: 700 32px/1.1 var(--texto); color: var(--lima); margin-top: 6px; }
+  .regua { position: absolute; left: 90px; width: 900px; height: 34px; border-radius: 999px; background: linear-gradient(90deg, #000 0%, #222 18%, #777 50%, #d8d8d8 85%, #fff 100%);
+           box-shadow: 0 0 0 3px rgba(255,255,255,.2), 0 16px 40px rgba(0,0,0,.5); transform-origin: left center; }
+  .titulo { position: absolute; left: 40px; right: 40px; text-align: center; font: 800 100px/0.98 var(--titulo); letter-spacing: -.05em; }
+  .titulo b { color: var(--lima); font-weight: 800; }
+  .titulo span { display: block; }
+  .mini { position: absolute; border-radius: 22px; overflow: hidden; background: #000; box-shadow: 0 0 0 3px rgba(193,255,114,.4), 0 14px 30px rgba(0,0,0,.5); }
+  .mini img { position: absolute; max-width: none; }
+</style>
+</head>
+<body>
+<div id="tela">
+  <div id="mundo">
+    <canvas id="fundo" width="1080" height="1920"></canvas>
+    <div id="cenas"></div>
+    <svg id="laser" width="1080" height="1920" style="position:absolute;left:0;top:0;overflow:visible"></svg>
+    <canvas id="bot" width="1080" height="1920"></canvas>
+    <div id="scrim"></div>
+    <div id="passo"><i></i><div><small></small><b></b></div></div>
+    <div id="hud"></div>
+    <div id="legenda"></div>
+  </div>
+  <div id="flash"></div>
+</div>
+<script src="tempos.js"></script>
+<script src="clipes.js"></script>
+<script type="module" src="cena.js"></script>
+</body>
+</html>
